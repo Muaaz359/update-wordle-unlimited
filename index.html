@@ -164,8 +164,8 @@
   <!-- Header Navigation -->
   <header>
     <div class="header-left">
-      <a href="index.html" class="logo-text">
-        <img src="assets/wordle-logo.webp" alt="Wordle Unlimited 3D Green Tile Logo WebP" class="header-logo-img" width="30" height="30">
+      <a href="./" class="logo-text">
+        <img src="assets/wordle-logo.webp" alt="Wordle Unlimited 3D Green Tile Logo WebP" class="header-logo-img" width="30" height="30" decoding="async" fetchpriority="high">
         <span>Wordle</span> Unlimited
       </a>
       <button class="icon-btn-round" id="create-game-btn" title="Create Custom Word Challenge" aria-label="Create Custom Challenge">
@@ -853,7 +853,7 @@
   </footer>
 
   <!-- Scripts -->
-  <script src="js/dictionary.js"></script>
-  <script src="js/game.js"></script>
+  <script src="js/dictionary.js" defer></script>
+  <script src="js/game.js" defer></script>
 </body>
 </html>
