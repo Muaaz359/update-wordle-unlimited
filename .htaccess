@@ -1,6 +1,7 @@
 # Apache Configuration for Wordle Unlimited
-# Clean URLs: Remove .html extensions & index.html from slugs
+DirectoryIndex index.html index.php
 
+# Clean URLs: Remove .html extensions & index.html from slugs
 <IfModule mod_rewrite.c>
   RewriteEngine On
 
