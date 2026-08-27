@@ -1,0 +1,41 @@
+# Apache Configuration for Wordle Unlimited
+# Clean URLs: Remove .html extensions & index.html from slugs
+
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+
+  # 1. Redirect direct request for index.html to clean directory URL
+  RewriteCond %{THE_REQUEST} \s/index\.html[\s?] [NC]
+  RewriteRule ^index\.html$ ./ [R=301,L]
+
+  RewriteCond %{THE_REQUEST} \s/blog/index\.html[\s?] [NC]
+  RewriteRule ^blog/index\.html$ blog/ [R=301,L]
+
+  # 2. Redirect direct request with .html extension to clean URL without .html
+  RewriteCond %{THE_REQUEST} \s/([^.]+)\.html[\s?] [NC]
+  RewriteRule ^([^.]+)\.html$ $1 [R=301,L]
+
+  # 3. Internally resolve clean URL to .html file if file exists
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteCond %{REQUEST_FILENAME}\.html -f
+  RewriteRule ^(.*)$ $1.html [L]
+</IfModule>
+
+# Browser Caching & Performance
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresDefault "access plus 1 month"
+  ExpiresByType image/webp "access plus 1 year"
+  ExpiresByType image/png "access plus 1 year"
+  ExpiresByType image/jpeg "access plus 1 year"
+  ExpiresByType image/svg+xml "access plus 1 year"
+  ExpiresByType text/css "access plus 1 month"
+  ExpiresByType application/javascript "access plus 1 month"
+</IfModule>
+
+# Security Headers
+<IfModule mod_headers.c>
+  Header set X-Content-Type-Options "nosniff"
+  Header set X-Frame-Options "SAMEORIGIN"
+  Header set X-XSS-Protection "1; mode=block"
+</IfModule>

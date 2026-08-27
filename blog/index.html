@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Wordle Strategy Guides & Tips - Wordle Unlimited</title>
+  <meta name="description" content="Explore practical Wordle guides, starting word rankings, vowel strategies, and tips to improve your guess count.">
+  <meta name="keywords" content="wordle blog, wordle strategy, wordle tips, how to win wordle, wordle guides, wordle unlimited blog">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+  <link rel="canonical" href="https://wordle-unlimited.app/blog">
+
+  <!-- Google Fonts: Poppins -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400;1,600&display=swap" rel="stylesheet">
+
+  <!-- OpenGraph Metadata -->
+  <meta property="og:site_name" content="Wordle Unlimited">
+  <meta property="og:title" content="Wordle Strategy Guides & Tips - Wordle Unlimited">
+  <meta property="og:description" content="Explore practical Wordle guides, starting word rankings, vowel strategies, and tips to improve your guess count.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://wordle-unlimited.app/blog/">
+  <meta property="og:image" content="https://wordle-unlimited.app/assets/wordle-game-preview.webp">
+
+  <!-- Twitter Card Metadata -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@Wordleinfo">
+  <meta name="twitter:creator" content="@Wordleinfo">
+  <meta name="twitter:title" content="Wordle Strategy Guides & Tips">
+  <meta name="twitter:description" content="Explore practical Wordle guides, starting word rankings, vowel strategies, and tips.">
+  <meta name="twitter:image" content="https://wordle-unlimited.app/assets/wordle-game-preview.webp">
+
+  <link rel="icon" type="image/png" href="../assets/favicon.png">
+  <link rel="stylesheet" href="../styles.css">
+  <script src="../js/theme.js" defer></script>
+
+  <!-- Schema.org Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "CollectionPage",
+        "@id": "https://wordle-unlimited.app/blog#webpage",
+        "url": "https://wordle-unlimited.app/blog",
+        "name": "Wordle Strategy Guides & Tips",
+        "description": "Practical Wordle guides, starting word rankings, and vowel strategies.",
+        "publisher": {
+          "@type": "Organization",
+          "name": "Wordle Unlimited",
+          "url": "https://wordle-unlimited.app/",
+          "logo": {
+            "@type": "ImageObject",
+            "url": "https://wordle-unlimited.app/assets/wordle-logo.webp"
+          },
+          "sameAs": [
+            "https://x.com/Wordleinfo",
+            "https://www.instagram.com/wordle_unlimited.app/",
+            "https://www.youtube.com/channel/UChjoTxDOFkFuhfHpkrHSHbA"
+          ]
+        }
+      },
+      {
+        "@type": "BreadcrumbList",
+        "@id": "https://wordle-unlimited.app/blog#breadcrumb",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://wordle-unlimited.app/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Blog Hub",
+            "item": "https://wordle-unlimited.app/blog"
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+
+  <!-- Header Navigation -->
+  <header>
+    <div class="header-left">
+      <a href="../" class="logo-text">
+        <img src="../assets/wordle-logo.webp" alt="Wordle Unlimited 3D Green Tile Logo WebP" class="header-logo-img" width="32" height="32">
+        <span>Wordle</span> Unlimited
+      </a>
+    </div>
+    <div class="header-right">
+      <button class="icon-btn-round theme-toggle-btn" onclick="toggleGlobalTheme()" title="Toggle Dark/Light Mode" aria-label="Toggle Theme">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      </button>
+      <a href="../" class="btn-primary" style="text-decoration: none;">Play Wordle</a>
+    </div>
+  </header>
+
+  <!-- Page Container -->
+  <div class="page-container">
+    
+    <!-- Breadcrumbs -->
+    <nav class="breadcrumbs-nav" aria-label="Breadcrumb">
+      <a href="../">Home</a>
+      <span>/</span>
+      <span style="color: var(--text-color);">Guides</span>
+    </nav>
+
+    <section class="content-card-box">
+      <h1>Wordle Strategy & Tips</h1>
+      <p style="font-size: 1.02rem; line-height: 1.8; color: var(--text-muted);">
+        Practical guides, opening word rankings, and vowel elimination strategies to help you solve 5-letter word puzzles in fewer guesses.
+      </p>
+
+      <!-- Category Filter Pills -->
+      <div class="category-filter-pills">
+        <button class="filter-pill active" onclick="filterArticles('all', this)">All</button>
+        <button class="filter-pill" onclick="filterArticles('starters', this)">Starting Words</button>
+        <button class="filter-pill" onclick="filterArticles('vowels', this)">Vowel Strategy</button>
+        <button class="filter-pill" onclick="filterArticles('frequency', this)">Letter Frequencies</button>
+        <button class="filter-pill" onclick="filterArticles('hardmode', this)">Hard Mode</button>
+        <button class="filter-pill" onclick="filterArticles('beginner', this)">How to Play</button>
+      </div>
+
+      <!-- Featured Article Card -->
+      <a href="best-wordle-starting-words" class="blog-hero-card article-item" data-category="starters">
+        <img src="../assets/wordle-vowel-strategy.webp" alt="Best Wordle starting words guide cover" class="blog-hero-img" width="1000" height="500" loading="eager" decoding="async">
+        <div class="blog-hero-body">
+          <h2 class="blog-hero-title">Top 10 Best Wordle Starting Words</h2>
+          <p class="blog-hero-desc">
+            Discover why words like ADIEU, AUDIO, CANOE, and ROATE give you the best chance of narrowing down candidates on your first guess.
+          </p>
+          <div class="blog-card-meta">
+            <span>Read Guide ➔</span>
+            <span>6 min read</span>
+          </div>
+        </div>
+      </a>
+
+      <!-- Secondary Articles Grid -->
+      <div class="blog-grid" id="articles-grid">
+        
+        <a href="wordle-vowels" class="blog-card article-item" data-category="vowels">
+          <img src="../assets/wordle-game-preview.webp" alt="Wordle vowel strategy guide cover" class="blog-card-img" width="1000" height="600" loading="lazy" decoding="async">
+          <div class="blog-card-body">
+            <h3 class="blog-card-title">The Power of Vowels: Two-Turn Strategy</h3>
+            <p class="blog-card-excerpt">Learn how to test all 5 vowels across two turns to figure out the skeleton of the mystery word.</p>
+            <div class="blog-card-meta"><span>Read Guide ➔</span><span>5 min read</span></div>
+          </div>
+        </a>
+
+        <a href="wordle-cheat-sheet" class="blog-card article-item" data-category="frequency">
+          <img src="../assets/wordle-cheat-sheet.webp" alt="Wordle letter frequency cheat sheet cover" class="blog-card-img" width="1000" height="500" loading="lazy" decoding="async">
+          <div class="blog-card-body">
+            <h3 class="blog-card-title">Wordle Letter Frequency Cheat Sheet</h3>
+            <p class="blog-card-excerpt">Positional rankings for all 26 letters, frequent blends, and tips to escape Hard Mode traps.</p>
+            <div class="blog-card-meta"><span>Read Guide ➔</span><span>6 min read</span></div>
+          </div>
+        </a>
+
+        <a href="wordle-hard-mode-guide" class="blog-card article-item" data-category="hardmode">
+          <img src="../assets/wordle-game-preview.webp" alt="Wordle hard mode rules and strategy cover" class="blog-card-img" width="1000" height="600" loading="lazy" decoding="async">
+          <div class="blog-card-body">
+            <h3 class="blog-card-title">Mastering Wordle Hard Mode</h3>
+            <p class="blog-card-excerpt">How to play by strict green and yellow clue rules without getting caught in rhyming traps like _IGHT.</p>
+            <div class="blog-card-meta"><span>Read Guide ➔</span><span>5 min read</span></div>
+          </div>
+        </a>
+
+        <a href="how-to-play-wordle-unlimited" class="blog-card article-item" data-category="beginner">
+          <img src="../assets/wordle-cheat-sheet.webp" alt="How to play Wordle Unlimited guide cover" class="blog-card-img" width="1000" height="500" loading="lazy" decoding="async">
+          <div class="blog-card-body">
+            <h3 class="blog-card-title">How to Play Wordle Unlimited</h3>
+            <p class="blog-card-excerpt">Step-by-step tutorial on game rules, tile colors, keyboard shortcuts, and custom challenges.</p>
+            <div class="blog-card-meta"><span>Read Guide ➔</span><span>4 min read</span></div>
+          </div>
+        </a>
+
+        <a href="wordle-unlimited-specifications" class="blog-card article-item" data-category="beginner">
+          <img src="../assets/wordle-game-preview.webp" alt="Wordle Unlimited platform specifications and features" class="blog-card-img" width="1000" height="600" loading="lazy" decoding="async">
+          <div class="blog-card-body">
+            <h3 class="blog-card-title">Platform Specs & Features</h3>
+            <p class="blog-card-excerpt">Complete technical specifications, Web Audio synthesizer, Canvas scorecards, and game mechanics.</p>
+            <div class="blog-card-meta"><span>Read Tech Spec ➔</span><span>5 min read</span></div>
+          </div>
+        </a>
+
+      </div>
+    </section>
+
+    <!-- Practice Callout -->
+    <section class="content-card-box" style="text-align: center;">
+      <h2>Ready to Put These Tips Into Action?</h2>
+      <p style="max-width: 540px; margin: 0 auto 20px auto; color: var(--text-muted);">
+        Play unlimited rounds of Wordle for free with instant restarts and zero daily limits.
+      </p>
+      <div>
+        <a href="../index.html" class="btn-primary" style="display: inline-flex; text-decoration: none;">Play Wordle Unlimited</a>
+      </div>
+    </section>
+
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-container">
+      <div class="footer-main-grid">
+        <!-- Column 1 -->
+        <div class="footer-brand-col">
+          <a href="../index.html" class="footer-brand-logo">
+            <img src="../assets/wordle-logo.webp" alt="Wordle Unlimited 3D Green Tile Logo WebP" class="footer-logo-img" width="32" height="32">
+            <span>Wordle</span> Unlimited
+          </a>
+          <p class="footer-brand-desc">
+            Play free, infinite 5-letter word puzzles online with zero waiting time.
+          </p>
+          <div class="footer-rating-pill">
+            ★ 4.96 / 5.0 Rating (34K+ Reviews)
+          </div>
+        </div>
+
+        <!-- Column 2 -->
+        <div class="footer-col">
+          <div class="footer-col-heading">Game</div>
+          <ul class="footer-col-nav">
+            <li><a href="../">Play Wordle Unlimited</a></li>
+            <li><a href="how-to-play-wordle-unlimited">How to Play</a></li>
+            <li><a href="wordle-hard-mode-guide">Hard Mode</a></li>
+            <li><a href="wordle-unlimited-specifications">Specifications</a></li>
+            <li><a href="../">Custom Challenges</a></li>
+          </ul>
+        </div>
+
+        <!-- Column 3 -->
+        <div class="footer-col">
+          <div class="footer-col-heading">Guides</div>
+          <ul class="footer-col-nav">
+            <li><a href="best-wordle-starting-words">Best Starting Words</a></li>
+            <li><a href="wordle-vowels">Vowel Strategy</a></li>
+            <li><a href="wordle-cheat-sheet">Letter Cheat Sheet</a></li>
+            <li><a href="./">All Guides</a></li>
+          </ul>
+        </div>
+
+        <!-- Column 4 -->
+        <div class="footer-col">
+          <div class="footer-col-heading">About</div>
+          <ul class="footer-col-nav">
+            <li><a href="../about-us">About Us</a></li>
+            <li><a href="../contact-us">Contact Us</a></li>
+            <li><a href="../privacy-policy">Privacy Policy</a></li>
+            <li><a href="../terms-of-service">Terms of Service</a></li>
+          </ul>
+        </div>
+
+        <!-- Column 5 -->
+        <div class="footer-col">
+          <div class="footer-col-heading">Socials</div>
+          <div class="footer-social-icons-row">
+            <a href="https://x.com/Wordleinfo" target="_blank" rel="noopener noreferrer" class="footer-icon-square x-twitter" title="Follow Wordle Unlimited on X (Twitter)" aria-label="X Twitter">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+            </a>
+            <a href="https://www.instagram.com/wordle_unlimited.app/" target="_blank" rel="noopener noreferrer" class="footer-icon-square instagram" title="Follow Wordle Unlimited on Instagram" aria-label="Instagram">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+            </a>
+            <a href="https://www.youtube.com/channel/UChjoTxDOFkFuhfHpkrHSHbA" target="_blank" rel="noopener noreferrer" class="footer-icon-square youtube" title="Subscribe to Wordle Unlimited on YouTube" aria-label="YouTube">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-divider"></div>
+
+      <div class="footer-bottom-bar">
+        <p class="footer-copyright">
+          © 2026 Wordle Unlimited. Built with ❤️ for word puzzle lovers.
+        </p>
+        <p class="footer-disclaimer">
+          Wordle is a registered trademark of The New York Times Company. Wordle Unlimited is an independent fan project not affiliated with or endorsed by The New York Times Company.
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    function filterArticles(cat, btn) {
+      document.querySelectorAll('.filter-pill').forEach(p => p.classList.remove('active'));
+      btn.classList.add('active');
+      document.querySelectorAll('.article-item').forEach(item => {
+        if (cat === 'all' || item.getAttribute('data-category') === cat) {
+          item.style.display = item.classList.contains('blog-hero-card') ? 'grid' : 'flex';
+        } else {
+          item.style.display = 'none';
+        }
+      });
+    }
+  </script>
+
+</body>
+</html>

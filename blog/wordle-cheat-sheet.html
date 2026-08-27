@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Wordle Letter Frequency Cheat Sheet & Positional Guide</title>
+  <meta name="description" content="Explore English letter frequencies by position 1-5, common vowel digraphs, and tips to escape Hard Mode traps in Wordle.">
+  <meta name="keywords" content="wordle cheat sheet, wordle letter frequencies, most common wordle letters, wordle 5 letter frequencies">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+  <link rel="canonical" href="https://wordle-unlimited.app/blog/wordle-cheat-sheet">
+
+  <!-- Google Fonts: Poppins -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400;1,600&display=swap" rel="stylesheet">
+
+  <!-- OpenGraph Metadata -->
+  <meta property="og:site_name" content="Wordle Unlimited">
+  <meta property="og:title" content="Wordle Letter Frequency Cheat Sheet & Positional Guide">
+  <meta property="og:description" content="Explore English letter frequencies by position 1-5, common vowel digraphs, and tips to escape Hard Mode traps in Wordle.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://wordle-unlimited.app/blog/wordle-cheat-sheet">
+  <meta property="og:image" content="https://wordle-unlimited.app/assets/wordle-cheat-sheet.webp">
+
+  <!-- Twitter Card Metadata -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@Wordleinfo">
+  <meta name="twitter:creator" content="@Wordleinfo">
+  <meta name="twitter:title" content="Wordle Letter Frequency Cheat Sheet">
+  <meta name="twitter:description" content="Positional rankings for all 26 letters, frequent blends, and tips to escape Hard Mode traps.">
+  <meta name="twitter:image" content="https://wordle-unlimited.app/assets/wordle-cheat-sheet.webp">
+
+  <link rel="icon" type="image/png" href="../assets/favicon.png">
+  <link rel="stylesheet" href="../styles.css">
+  <script src="../js/theme.js" defer></script>
+
+  <!-- Schema.org Article Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Article",
+        "@id": "https://wordle-unlimited.app/blog/wordle-cheat-sheet#article",
+        "headline": "Wordle Letter Frequency Cheat Sheet & Positional Guide",
+        "description": "Comprehensive letter frequency data for 5-letter Wordle words.",
+        "author": { "@type": "Organization", "name": "Wordle Unlimited" },
+        "publisher": { "@type": "Organization", "name": "Wordle Unlimited", "url": "https://wordle-unlimited.app/", "logo": { "@type": "ImageObject", "url": "https://wordle-unlimited.app/assets/wordle-logo.webp" }, "sameAs": ["https://x.com/Wordleinfo", "https://www.instagram.com/wordle_unlimited.app/", "https://www.youtube.com/channel/UChjoTxDOFkFuhfHpkrHSHbA"] },
+        "datePublished": "2026-06-14",
+        "dateModified": "2026-08-27",
+        "mainEntityOfPage": "https://wordle-unlimited.app/blog/wordle-cheat-sheet"
+      },
+      {
+        "@type": "BreadcrumbList",
+        "@id": "https://wordle-unlimited.app/blog/wordle-cheat-sheet#breadcrumb",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://wordle-unlimited.app/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Guides",
+            "item": "https://wordle-unlimited.app/blog"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "Cheat Sheet",
+            "item": "https://wordle-unlimited.app/blog/wordle-cheat-sheet"
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+
+  <!-- Reading Progress Bar -->
+  <div id="reading-progress-container">
+    <div id="reading-progress-bar"></div>
+  </div>
+
+  <!-- Header Navigation -->
+  <header>
+    <div class="header-left">
+      <a href="../" class="logo-text">
+        <img src="../assets/wordle-logo.webp" alt="Wordle Unlimited 3D Green Tile Logo WebP" class="header-logo-img" width="32" height="32">
+        <span>Wordle</span> Unlimited
+      </a>
+    </div>
+    <div class="header-right">
+      <a href="./" class="nav-link">Guides</a>
+      <button class="icon-btn-round theme-toggle-btn" onclick="toggleGlobalTheme()" title="Toggle Dark/Light Mode" aria-label="Toggle Theme">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      </button>
+      <a href="../" class="btn-primary" style="text-decoration: none;">Play Wordle</a>
+    </div>
+  </header>
+
+  <!-- Page Container -->
+  <div class="page-container">
+    
+    <article class="content-card-box">
+      <!-- Breadcrumbs -->
+      <nav class="breadcrumbs-nav" aria-label="Breadcrumb">
+        <a href="../">Home</a>
+        <span>/</span>
+        <a href="./">Guides</a>
+        <span>/</span>
+        <span style="color: var(--text-color);">Letter Cheat Sheet</span>
+      </nav>
+
+      <h1>Wordle Letter Frequency Cheat Sheet</h1>
+
+      <!-- Author Byline -->
+      <div class="article-meta-bar">
+        <div class="author-chip">
+          <div class="author-avatar">W</div>
+          <div class="author-info">
+            <span class="author-name">Wordle Unlimited Team</span>
+            <span class="author-role">Strategy & Analytics</span>
+          </div>
+        </div>
+        <div class="meta-stats">
+          <span>Updated: Aug 2026</span>
+          <span>6 min read</span>
+        </div>
+      </div>
+
+      <!-- Table of Contents -->
+      <div class="toc-box">
+        <div class="toc-title">In this guide</div>
+        <div class="toc-list">
+          <a href="#overall-frequencies" class="toc-link">Top 12 Letters</a>
+          <a href="#positional-breakdown" class="toc-link">Positional Breakdown</a>
+          <a href="#death-traps" class="toc-link">Hard Mode Traps</a>
+        </div>
+      </div>
+
+      <div class="webp-box">
+        <img src="../assets/wordle-cheat-sheet.webp" alt="Wordle letter frequency cheat sheet" width="1000" height="500">
+      </div>
+
+      <p>
+        Knowing which letters appear most often—and which spots they typically land in—can give your Wordle game a big boost. Here is the letter frequency breakdown across the official 2,300+ target word list.
+      </p>
+
+      <div class="takeaways-box">
+        <h4>Key Takeaways</h4>
+        <ul>
+          <li><strong>Top 12 letters:</strong> Make up more than 75% of all letter occurrences in 5-letter target words.</li>
+          <li><strong>Spot 1:</strong> 'S' starts over 15% of all valid solutions.</li>
+          <li><strong>Spot 5:</strong> 'E' and 'Y' finish over 35% of all solutions.</li>
+        </ul>
+      </div>
+
+      <h2 id="overall-frequencies">Top 12 Most Common Letters</h2>
+      <table class="styled-table">
+        <thead>
+          <tr>
+            <th>Rank</th>
+            <th>Letter</th>
+            <th>Frequency</th>
+            <th>Type</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>1</td><td><strong>E</strong></td><td>46.2%</td><td>Vowel</td></tr>
+          <tr><td>2</td><td><strong>A</strong></td><td>39.1%</td><td>Vowel</td></tr>
+          <tr><td>3</td><td><strong>R</strong></td><td>38.7%</td><td>Consonant</td></tr>
+          <tr><td>4</td><td><strong>O</strong></td><td>29.2%</td><td>Vowel</td></tr>
+          <tr><td>5</td><td><strong>I</strong></td><td>28.4%</td><td>Vowel</td></tr>
+          <tr><td>6</td><td><strong>S</strong></td><td>27.3%</td><td>Consonant</td></tr>
+          <tr><td>7</td><td><strong>T</strong></td><td>26.5%</td><td>Consonant</td></tr>
+          <tr><td>8</td><td><strong>L</strong></td><td>25.1%</td><td>Consonant</td></tr>
+          <tr><td>9</td><td><strong>C</strong></td><td>20.3%</td><td>Consonant</td></tr>
+          <tr><td>10</td><td><strong>U</strong></td><td>19.8%</td><td>Vowel</td></tr>
+          <tr><td>11</td><td><strong>N</strong></td><td>19.4%</td><td>Consonant</td></tr>
+          <tr><td>12</td><td><strong>D</strong></td><td>17.0%</td><td>Consonant</td></tr>
+        </tbody>
+      </table>
+
+      <h2 id="positional-breakdown">Where Letters Appear in 5-Letter Words</h2>
+      <ul>
+        <li><strong>Position 1 (First Letter):</strong> <strong>S</strong> is the most common first letter (over 360 words), followed by <strong>C, B, T, P, A, and F</strong>. Starting with S words (like <em>SLATE</em>) lands first-letter green hits most frequently.</li>
+        <li><strong>Position 2:</strong> <strong>A, O, E, I, U, and R</strong>. Over 85% of target words place a vowel in spot 2.</li>
+        <li><strong>Position 3:</strong> <strong>A, I, O, E, U, and R</strong>. Common vowel digraphs like <em>EA</em> or <em>OU</em> sit here. Check our <a href="wordle-vowels.html">Vowel Guide</a>.</li>
+        <li><strong>Position 4:</strong> <strong>E, N, S, A, L, and T</strong>.</li>
+        <li><strong>Position 5 (Last Letter):</strong> <strong>E</strong> and <strong>Y</strong> dominate spot 5, followed by <strong>T, R, L, and D</strong>.</li>
+      </ul>
+
+      <h2 id="death-traps">Handling Rhyme Traps in Hard Mode</h2>
+      <p>
+        In <a href="wordle-hard-mode-guide.html">Hard Mode</a>, landing 4 green letters early can be dangerous if there are more candidate consonants than remaining guesses:
+      </p>
+      <ul>
+        <li><strong>_IGHT:</strong> <em>LIGHT, NIGHT, MIGHT, FIGHT, RIGHT, SIGHT, TIGHT</em> (7+ words)</li>
+        <li><strong>_ATCH:</strong> <em>CATCH, MATCH, HATCH, PATCH, WATCH, LATCH</em> (6+ words)</li>
+        <li><strong>_OUND:</strong> <em>BOUND, FOUND, HOUND, MOUND, POUND, ROUND, SOUND</em> (7+ words)</li>
+      </ul>
+      <p>
+        In regular mode, if you spot an _IGHT pattern on turn 2, use turn 3 to test multiple starting consonants at once (e.g. guessing <em>FLAMP</em> to check F, L, M, P) before committing to your final answers!
+      </p>
+
+      <!-- Share Bar -->
+      <div class="article-share-bar">
+        <span class="share-label">Share:</span>
+        <button class="share-btn-pill" onclick="navigator.clipboard.writeText(window.location.href); showToast('Link copied to clipboard!');">Copy Link</button>
+      </div>
+
+      <!-- Action -->
+      <div style="margin-top: 24px;">
+        <a href="../index.html" class="btn-primary" style="text-decoration: none;">Practice on Wordle Unlimited</a>
+      </div>
+    </article>
+
+    <!-- Related Articles -->
+    <section class="content-card-box">
+      <h2>Related Guides</h2>
+      <div class="blog-grid">
+        <a href="best-wordle-starting-words.html" class="blog-card">
+          <img src="../assets/wordle-vowel-strategy.webp" alt="Wordle starting words cover" class="blog-card-img" width="1000" height="500">
+          <div class="blog-card-body">
+            <h3 class="blog-card-title">Top 10 Best Wordle Starting Words</h3>
+            <div class="blog-card-meta"><span>Read Guide ➔</span><span>6 min read</span></div>
+          </div>
+        </a>
+        <a href="wordle-hard-mode-guide.html" class="blog-card">
+          <img src="../assets/wordle-game-preview.webp" alt="Wordle hard mode guide cover" class="blog-card-img" width="1000" height="600">
+          <div class="blog-card-body">
+            <h3 class="blog-card-title">Mastering Wordle Hard Mode</h3>
+            <div class="blog-card-meta"><span>Read Guide ➔</span><span>5 min read</span></div>
+          </div>
+        </a>
+      </div>
+    </section>
+
+  </div>
+
+  <!-- Floating Action -->
+  <div class="floating-action-pill">
+    <a href="../index.html">Play Wordle</a>
+    <div class="floating-scroll-top" onclick="window.scrollTo({top: 0, behavior: 'smooth'})" title="Scroll to Top">▲</div>
+  </div>
+
+  <div id="toast-container"></div>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-container">
+      <div class="footer-main-grid">
+        <div class="footer-brand-col">
+          <a href="../index.html" class="footer-brand-logo">
+            <img src="../assets/wordle-logo.webp" alt="Wordle Unlimited 3D Green Tile Logo WebP" class="footer-logo-img" width="32" height="32">
+            <span>Wordle</span> Unlimited
+          </a>
+          <p class="footer-brand-desc">
+            Play free, infinite 5-letter word puzzles online with zero waiting time.
+          </p>
+          <div class="footer-rating-pill">
+            ★ 4.96 / 5.0 Rating (34K+ Reviews)
+          </div>
+        </div>
+
+        <div class="footer-col">
+          <div class="footer-col-heading">Game</div>
+          <ul class="footer-col-nav">
+            <li><a href="../">Play Wordle Unlimited</a></li>
+            <li><a href="how-to-play-wordle-unlimited">How to Play</a></li>
+            <li><a href="wordle-hard-mode-guide">Hard Mode</a></li>
+            <li><a href="wordle-unlimited-specifications">Specifications</a></li>
+            <li><a href="../">Custom Challenges</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <div class="footer-col-heading">Guides</div>
+          <ul class="footer-col-nav">
+            <li><a href="best-wordle-starting-words">Best Starting Words</a></li>
+            <li><a href="wordle-vowels">Vowel Strategy</a></li>
+            <li><a href="wordle-cheat-sheet">Letter Cheat Sheet</a></li>
+            <li><a href="./">All Guides</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <div class="footer-col-heading">About</div>
+          <ul class="footer-col-nav">
+            <li><a href="../about-us">About Us</a></li>
+            <li><a href="../contact-us">Contact Us</a></li>
+            <li><a href="../privacy-policy">Privacy Policy</a></li>
+            <li><a href="../terms-of-service">Terms of Service</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <div class="footer-col-heading">Socials</div>
+          <div class="footer-social-icons-row">
+            <a href="https://x.com/Wordleinfo" target="_blank" rel="noopener noreferrer" class="footer-icon-square x-twitter" title="Follow Wordle Unlimited on X (Twitter)" aria-label="X Twitter">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+            </a>
+            <a href="https://www.instagram.com/wordle_unlimited.app/" target="_blank" rel="noopener noreferrer" class="footer-icon-square instagram" title="Follow Wordle Unlimited on Instagram" aria-label="Instagram">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+            </a>
+            <a href="https://www.youtube.com/channel/UChjoTxDOFkFuhfHpkrHSHbA" target="_blank" rel="noopener noreferrer" class="footer-icon-square youtube" title="Subscribe to Wordle Unlimited on YouTube" aria-label="YouTube">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-divider"></div>
+
+      <div class="footer-bottom-bar">
+        <p class="footer-copyright">
+          © 2026 Wordle Unlimited. Built with ❤️ for word puzzle lovers.
+        </p>
+        <p class="footer-disclaimer">
+          Wordle is a registered trademark of The New York Times Company. Wordle Unlimited is an independent fan project not affiliated with or endorsed by The New York Times Company.
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    window.addEventListener('scroll', () => {
+      const winScroll = document.documentElement.scrollTop;
+      const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      const scrolled = (winScroll / height) * 100;
+      document.getElementById('reading-progress-bar').style.width = scrolled + '%';
+    });
+
+    function showToast(msg, duration = 2000) {
+      const container = document.getElementById('toast-container');
+      const toast = document.createElement('div');
+      toast.className = 'toast';
+      toast.textContent = msg;
+      container.appendChild(toast);
+      setTimeout(() => {
+        toast.style.opacity = '0';
+        setTimeout(() => toast.remove(), 300);
+      }, duration);
+    }
+  </script>
+
+</body>
+</html>

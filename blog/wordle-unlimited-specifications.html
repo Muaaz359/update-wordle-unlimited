@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Wordle Unlimited Specifications: Features & Architecture</title>
+  <meta name="description" content="Explore complete technical specifications, gameplay architecture, Web Audio synthesis, and feature breakdown of Wordle Unlimited.">
+  <meta name="keywords" content="wordle unlimited specifications, wordle architecture, wordle features, wordle technical specs, wordle game engine, wordle web audio">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+  <link rel="canonical" href="https://wordle-unlimited.app/blog/wordle-unlimited-specifications">
+
+  <!-- Google Fonts: Poppins -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400;1,600&display=swap" rel="stylesheet">
+
+  <!-- OpenGraph Metadata -->
+  <meta property="og:site_name" content="Wordle Unlimited">
+  <meta property="og:title" content="Wordle Unlimited Specifications: Features & Architecture">
+  <meta property="og:description" content="Explore complete technical specifications, gameplay architecture, Web Audio synthesis, and feature breakdown of Wordle Unlimited.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://wordle-unlimited.app/blog/wordle-unlimited-specifications">
+  <meta property="og:image" content="https://wordle-unlimited.app/assets/wordle-game-preview.webp">
+
+  <!-- Twitter Card Metadata -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@Wordleinfo">
+  <meta name="twitter:creator" content="@Wordleinfo">
+  <meta name="twitter:title" content="Wordle Unlimited Specifications">
+  <meta name="twitter:description" content="Complete technical specifications, Web Audio synthesizer, Canvas scorecards, and game mechanics.">
+  <meta name="twitter:image" content="https://wordle-unlimited.app/assets/wordle-game-preview.webp">
+
+  <link rel="icon" type="image/png" href="../assets/favicon.png">
+  <link rel="stylesheet" href="../styles.css">
+  <script src="../js/theme.js" defer></script>
+
+  <!-- Schema.org TechArticle & Breadcrumbs Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "TechArticle",
+        "@id": "https://wordle-unlimited.app/blog/wordle-unlimited-specifications#article",
+        "headline": "Wordle Unlimited Specifications: Architecture, Features & Game Mechanics",
+        "description": "Comprehensive technical specifications, audio synthesis architecture, dictionary mechanics, and power features of Wordle Unlimited.",
+        "author": {
+          "@type": "Organization",
+          "name": "Wordle Unlimited Technical Team"
+        },
+        "publisher": {
+          "@type": "Organization",
+          "name": "Wordle Unlimited",
+          "url": "https://wordle-unlimited.app/",
+          "logo": {
+            "@type": "ImageObject",
+            "url": "https://wordle-unlimited.app/assets/wordle-logo.webp",
+            "width": 128,
+            "height": 128
+          },
+          "sameAs": [
+            "https://x.com/Wordleinfo",
+            "https://www.instagram.com/wordle_unlimited.app/",
+            "https://www.youtube.com/channel/UChjoTxDOFkFuhfHpkrHSHbA"
+          ]
+        },
+        "datePublished": "2026-08-27",
+        "dateModified": "2026-08-27",
+        "mainEntityOfPage": "https://wordle-unlimited.app/blog/wordle-unlimited-specifications"
+      },
+      {
+        "@type": "BreadcrumbList",
+        "@id": "https://wordle-unlimited.app/blog/wordle-unlimited-specifications#breadcrumbs",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://wordle-unlimited.app/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Blog & Guides",
+            "item": "https://wordle-unlimited.app/blog/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "Platform Specifications",
+            "item": "https://wordle-unlimited.app/blog/wordle-unlimited-specifications"
+          }
+        ]
+      },
+      {
+        "@type": "FAQPage",
+        "@id": "https://wordle-unlimited.app/blog/wordle-unlimited-specifications#faq",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "What technology stack powers Wordle Unlimited?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Wordle Unlimited is built using pure Vanilla ES6+ JavaScript, semantic HTML5, CSS3 Custom Properties, the Web Audio API for synthetic tactile sounds, and the HTML5 2D Canvas API for instant image scorecard rendering without any external framework bloat."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How does Wordle Unlimited evaluate letter guesses?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "It uses a precise two-pass linear O(N) letter matching algorithm. The first pass identifies exact positional green matches; the second pass identifies present yellow letters based on remaining letter frequencies to eliminate ghost duplicate warnings."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How does the custom word challenge link work?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Custom challenge words are Base64 encoded and attached to the URL query string as a '?w=' parameter, allowing friends to solve your secret word without needing any database queries or user accounts."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+
+  <!-- Top Reading Progress Indicator -->
+  <div id="reading-progress-container">
+    <div id="reading-progress-bar"></div>
+  </div>
+
+  <!-- Header Navigation -->
+  <header>
+    <div class="header-left">
+      <a href="../" class="logo-text">
+        <img src="../assets/wordle-logo.webp" alt="Wordle Unlimited Logo" class="header-logo-img" width="30" height="30">
+        <span>Wordle</span> Unlimited
+      </a>
+    </div>
+    <div class="header-right">
+      <a href="../" class="nav-link">Play Game</a>
+      <a href="./" class="nav-link">Guides</a>
+      <button class="theme-toggle-btn icon-btn" title="Toggle Light/Dark Theme" aria-label="Toggle Theme">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <!-- Main Article Content Container -->
+  <main class="page-container">
+    
+    <!-- Breadcrumbs Navigation -->
+    <nav class="breadcrumbs-nav" aria-label="Breadcrumb">
+      <a href="../">Home</a>
+      <span>›</span>
+      <a href="./">Guides</a>
+      <span>›</span>
+      <span>Platform Specifications</span>
+    </nav>
+
+    <article class="content-card-box">
+      <h1>Wordle Unlimited Specifications: Architecture, Features & Game Mechanics</h1>
+      
+      <!-- Author Byline Bar -->
+      <div class="article-meta-bar">
+        <div class="author-chip">
+          <div class="author-avatar">W</div>
+          <div class="author-info">
+            <span class="author-name">Wordle Unlimited Engineering</span>
+            <span class="author-role">Platform Architecture & Design</span>
+          </div>
+        </div>
+        <div class="meta-stats">
+          <span>📅 Updated: August 2026</span>
+          <span>⏱️ 5 min read</span>
+          <span>⚡ High-Performance Tech Spec</span>
+        </div>
+      </div>
+
+      <p class="lead-text" style="font-size: 1.05rem; line-height: 1.7; margin-bottom: 18px; color: var(--text-color);">
+        <strong>Wordle Unlimited</strong> was engineered from the ground up to deliver the fastest, most responsive, and feature-complete word puzzle experience on the modern web. Below is the complete technical and functional specification sheet detailing our game engine, vocabulary database, Web Audio synthesizer, and sharing ecosystem.
+      </p>
+
+      <h2>1. Executive Summary & Core Platform Architecture</h2>
+      <p>
+        Unlike monolithic web apps that rely on heavy front-end frameworks (like React or Angular) or server-side rendering latency, Wordle Unlimited operates as an ultra-lean, pure client-side single page application (SPA). This guarantees instant 0ms input response, zero layout shift, and complete offline Chromebook and workplace unblocked capability.
+      </p>
+
+      <!-- Technical Specifications Table -->
+      <table class="styled-table">
+        <thead>
+          <tr>
+            <th>Specification Component</th>
+            <th>Technology & Standard</th>
+            <th>Performance Benchmark</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Core Engine</strong></td>
+            <td>Pure Vanilla ECMAScript 6+</td>
+            <td>&lt; 15ms DOM Initialization</td>
+          </tr>
+          <tr>
+            <td><strong>Audio Engine</strong></td>
+            <td>Web Audio API Synthesizer (No MP3 files)</td>
+            <td>Zero audio download latency, zero network requests</td>
+          </tr>
+          <tr>
+            <td><strong>Canvas Rendering</strong></td>
+            <td>HTML5 2D Canvas HD Context</td>
+            <td>Instant 640x740 PNG Scorecard generation</td>
+          </tr>
+          <tr>
+            <td><strong>Theme Controller</strong></td>
+            <td>Pre-Render Synchronous CSS Custom Properties</td>
+            <td>0ms Flash of Unstyled Content (FOUC)</td>
+          </tr>
+          <tr>
+            <td><strong>Data Persistence</strong></td>
+            <td>W3C Web Storage (<code>localStorage</code>)</td>
+            <td>100% Private, Zero Cloud Server Telemetry</td>
+          </tr>
+          <tr>
+            <td><strong>Structured Data</strong></td>
+            <td>JSON-LD (Schema.org compliant)</td>
+            <td>Rich Results Eligible for Google & AI Engines</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h2>2. Core Game Engine & Linguistic Mechanics</h2>
+      <p>
+        The game's linguistic validation and scoring engine ensures fairness, authentic English word validation, and immediate feedback:
+      </p>
+      <ul>
+        <li><strong>Standard English Vocabulary Database:</strong> Divided into a curated target word list (common, universally recognized five-letter English nouns, verbs, and adjectives) and a comprehensive valid guess list.</li>
+        <li><strong>Two-Pass O(N) Deduction Algorithm:</strong> Prevents false duplicate color hints. Pass 1 locks exact positional green tiles; Pass 2 evaluates remaining letter frequencies for yellow tiles, guaranteeing that duplicate letters are never mislabeled.</li>
+        <li><strong>Endless Game Generator:</strong> Instant cryptographic pseudo-random word selection eliminates the traditional 24-hour waiting limit, allowing unlimited consecutive puzzles.</li>
+        <li><strong>Hard Mode Enforcement:</strong> An optional tactical constraint requiring confirmed green letters to remain in their revealed spots and confirmed yellow letters to be reused in all subsequent guesses.</li>
+      </ul>
+
+      <h2>3. Advanced Power Features & Tool Suite</h2>
+      <p>
+        Wordle Unlimited features an array of modern puzzle tools designed for both casual solvers and competitive word game enthusiasts:
+      </p>
+
+      <h3>💡 1. Positional Hint Assistant</h3>
+      <p>
+        When players encounter a tricky word pattern, clicking the <strong>💡 Hint</strong> button immediately scans the target word and reveals the first unrevealed letter in its exact positional tile, providing helpful guidance without completely giving away the puzzle.
+      </p>
+
+      <h3>🏳️ 2. Give Up & Animated Answer Reveal</h3>
+      <p>
+        Solvers who wish to surrender a puzzle can click <strong>🏳️ Give Up</strong>. The engine executes a smooth 3D flip animation across the active row, turns the letters green, plays a soft error sound, updates the virtual keyboard, and highlights the secret word in the statistics modal.
+      </p>
+
+      <h3>⏱️ 3. Real-Time Completion Timer</h3>
+      <p>
+        Every game session tracks the user's elapsed solving time down to the exact second. Upon victory or completion, the exact time (e.g. <code>⏱️ 24s</code> or <code>1m 15s</code>) is dynamically embedded into the win toast, modal header, and shareable score card.
+      </p>
+
+      <h3>🔗 4. Custom Challenge Link Generator</h3>
+      <p>
+        Players can create their own custom 5-letter word puzzles for friends by entering a secret word. The engine converts the word into a safe Base64 token and produces a shareable link (e.g. <code>?w=Q1JBTkU=</code>) that loads the custom word directly.
+      </p>
+
+      <h2>4. Multimedia Audio & Social Sharing Suite</h2>
+      <p>
+        Wordle Unlimited blends high-end tactile feedback with an effortless multi-platform sharing ecosystem:
+      </p>
+
+      <!-- Comparison Feature Table -->
+      <table class="styled-table">
+        <thead>
+          <tr>
+            <th>Feature Area</th>
+            <th>Capability Details</th>
+            <th>Supported Platforms</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Synthesized Audio</strong></td>
+            <td>Dynamic oscillator sine waves (pop), triangle chords (win), and sawtooth ramps (error)</td>
+            <td>All Web Audio API browsers (Desktop & Mobile)</td>
+          </tr>
+          <tr>
+            <td><strong>HD Picture Card</strong></td>
+            <td>Dynamic 640x740 canvas card with branding, colored tiles, time taken, and score</td>
+            <td>Direct PNG Download & Mobile Share Sheet</td>
+          </tr>
+          <tr>
+            <td><strong>1-Click WhatsApp</strong></td>
+            <td>Emoji grid formatted with time, guesses, and direct game link</td>
+            <td>WhatsApp Web & Mobile App</td>
+          </tr>
+          <tr>
+            <td><strong>1-Click X / Twitter</strong></td>
+            <td>Pre-formatted tweet intent with completion statistics and tags</td>
+            <td>X Web & Mobile App</td>
+          </tr>
+          <tr>
+            <td><strong>1-Click Facebook</strong></td>
+            <td>OpenGraph quote and link preview sharer</td>
+            <td>Facebook Web & Mobile App</td>
+          </tr>
+          <tr>
+            <td><strong>Instagram Sharing</strong></td>
+            <td>Native file sharing sheet on iOS/Android; instant HD PNG download on desktop</td>
+            <td>Instagram Stories, Feed & DMs</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h2>5. Privacy, Local Storage & Security Guarantee</h2>
+      <p>
+        We believe word puzzle games should respect user privacy. Wordle Unlimited features:
+      </p>
+      <ul>
+        <li><strong>Zero Account Requirement:</strong> Play immediately without passwords, emails, or phone numbers.</li>
+        <li><strong>Local Data Storage:</strong> All win streaks, play counts, guess distribution histograms, and theme preferences are saved exclusively in your browser's local sandbox storage.</li>
+        <li><strong>No Third-Party Cookies:</strong> Zero intrusive tracking scripts or ad blockers triggers.</li>
+      </ul>
+
+      <h2>Frequently Asked Questions (FAQ)</h2>
+      <div class="faq-accordion">
+        <details class="faq-item" open>
+          <summary>Is Wordle Unlimited completely free to play without limits?</summary>
+          <div style="padding: 12px 16px; font-size: 0.9rem; line-height: 1.6; color: var(--text-color);">
+            Yes. Wordle Unlimited is 100% free with no daily limits, zero paywalls, and no mandatory app downloads. You can play as many consecutive puzzles as you want.
+          </div>
+        </details>
+
+        <details class="faq-item">
+          <summary>Can I play Wordle Unlimited offline or on school networks?</summary>
+          <div style="padding: 12px 16px; font-size: 0.9rem; line-height: 1.6; color: var(--text-color);">
+            Yes. Because the entire game engine and vocabulary library execute client-side in pure JavaScript, it works smoothly on school Chromebooks, workplace firewalls, and low-bandwidth connections.
+          </div>
+        </details>
+
+        <details class="faq-item">
+          <summary>How is the HD Picture Scorecard generated?</summary>
+          <div style="padding: 12px 16px; font-size: 0.9rem; line-height: 1.6; color: var(--text-color);">
+            The scorecard is drawn client-side using an HTML5 2D Canvas element. It dynamically maps your actual green, yellow, and gray guess colors onto a modern dark gradient card that can be downloaded as a PNG or shared to Instagram and WhatsApp.
+          </div>
+        </details>
+      </div>
+
+      <!-- Call to Action Banner -->
+      <div style="background: var(--bg-subtle); border: 1px solid var(--card-border); border-radius: 8px; padding: 22px; margin-top: 28px; text-align: center;">
+        <h3 style="margin-bottom: 8px; font-size: 1.2rem;">Ready to Test Your Word Power?</h3>
+        <p style="color: var(--text-muted); font-size: 0.92rem; margin-bottom: 16px;">Jump into unlimited consecutive 5-letter word puzzles right now with zero waiting!</p>
+        <a href="../index.html" class="btn-primary" style="padding: 10px 24px; font-size: 0.95rem;">Play Wordle Unlimited Now 🎮</a>
+      </div>
+
+    </article>
+  </main>
+
+  <!-- Multi-Column Footer -->
+  <footer>
+    <div class="footer-container">
+      <div class="footer-main-grid">
+        <!-- Column 1: Brand -->
+        <div class="footer-brand-col">
+          <a href="../index.html" class="footer-brand-logo">
+            <img src="../assets/wordle-logo.webp" alt="Wordle Unlimited 3D Green Tile Logo WebP" class="footer-logo-img" width="32" height="32">
+            <span>Wordle</span> Unlimited
+          </a>
+          <p class="footer-brand-desc">
+            The free, infinite 5-letter word puzzle game. Zero daily waiting limits, official vocabulary, instant replays, and custom challenge links.
+          </p>
+          <div class="footer-rating-pill">
+            ⭐⭐⭐⭐⭐ 4.96/5 from 34,000+ players
+          </div>
+        </div>
+
+        <!-- Column 2: Quick Links -->
+        <div class="footer-col">
+          <div class="footer-col-heading">Game</div>
+          <ul class="footer-col-nav">
+            <li><a href="../">Play Wordle Unlimited</a></li>
+            <li><a href="how-to-play-wordle-unlimited">How to Play</a></li>
+            <li><a href="wordle-hard-mode-guide">Hard Mode</a></li>
+            <li><a href="wordle-unlimited-specifications">Specifications</a></li>
+          </ul>
+        </div>
+
+        <!-- Column 3: Strategy Guides -->
+        <div class="footer-col">
+          <div class="footer-col-heading">Guides</div>
+          <ul class="footer-col-nav">
+            <li><a href="best-wordle-starting-words">Best Starting Words</a></li>
+            <li><a href="wordle-vowels">Vowel Strategy</a></li>
+            <li><a href="wordle-cheat-sheet">Letter Cheat Sheet</a></li>
+            <li><a href="./">All Guides</a></li>
+          </ul>
+        </div>
+
+        <!-- Column 4: Company & Legal -->
+        <div class="footer-col">
+          <div class="footer-col-heading">About</div>
+          <ul class="footer-col-nav">
+            <li><a href="../about-us">About Us</a></li>
+            <li><a href="../contact-us">Contact Us</a></li>
+            <li><a href="../privacy-policy">Privacy Policy</a></li>
+            <li><a href="../terms-of-service">Terms of Service</a></li>
+          </ul>
+        </div>
+
+        <!-- Column 5: Social Media -->
+        <div class="footer-col">
+          <div class="footer-col-heading">Socials</div>
+          <div class="footer-social-icons-row">
+            <a href="https://x.com/Wordleinfo" target="_blank" rel="noopener noreferrer" class="footer-icon-square x-twitter" title="Follow Wordle Unlimited on X (Twitter)" aria-label="X Twitter">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+            </a>
+            <a href="https://www.instagram.com/wordle_unlimited.app/" target="_blank" rel="noopener noreferrer" class="footer-icon-square instagram" title="Follow Wordle Unlimited on Instagram" aria-label="Instagram">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+            </a>
+            <a href="https://www.youtube.com/channel/UChjoTxDOFkFuhfHpkrHSHbA" target="_blank" rel="noopener noreferrer" class="footer-icon-square youtube" title="Subscribe to Wordle Unlimited on YouTube" aria-label="YouTube">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-divider"></div>
+
+      <!-- Bottom Bar -->
+      <div class="footer-bottom-bar">
+        <p class="footer-copyright">
+          © 2026 Wordle Unlimited. Built with ❤️ for word puzzle lovers.
+        </p>
+        <p class="footer-disclaimer">
+          Wordle is a registered trademark of The New York Times Company. Wordle Unlimited is an independent fan project not affiliated with or endorsed by The New York Times Company.
+        </p>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Contact Us - Wordle Unlimited</title>
+  <meta name="description" content="Contact the Wordle Unlimited support team. Have feedback, word suggestions, or bug reports? Reach out to us today.">
+  <link rel="canonical" href="http://localhost/new%20wordle%20unlimited/contact.html">
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    .contact-form-card {
+      background: var(--card-bg);
+      border: 1px solid var(--tile-border);
+      border-radius: 12px;
+      padding: 30px;
+      max-width: 600px;
+      margin: 20px auto;
+      box-shadow: var(--shadow);
+    }
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      margin-bottom: 18px;
+    }
+    .form-group label {
+      font-weight: 700;
+      font-size: 0.95rem;
+    }
+    .form-group input, .form-group textarea {
+      padding: 12px;
+      border-radius: 8px;
+      border: 1px solid var(--tile-border);
+      background: var(--bg-color);
+      color: var(--text-color);
+      font-size: 1rem;
+      font-family: inherit;
+    }
+    .form-group textarea {
+      resize: vertical;
+      min-height: 120px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header Navigation -->
+  <header>
+    <div class="header-left">
+      <a href="index.html" class="btn-pill" style="text-decoration: none;">🏠 Home</a>
+    </div>
+    <div class="header-right">
+      <button class="btn-pill" onclick="window.location.href='index.html'">Play Wordle Unlimited 🎮</button>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <article class="seo-content-container" style="margin-top: 10px;">
+    <h1>Contact Us</h1>
+    <p style="text-align: center; max-width: 600px; margin: 0 auto 20px auto;">
+      Have a question, feedback, feature request, or bug report about <strong>Wordle Unlimited</strong>? We would love to hear from you! Fill out the form below or email us directly.
+    </p>
+
+    <div class="contact-form-card">
+      <form id="contact-form" onsubmit="event.preventDefault(); showToast('Thank you! Your message has been sent successfully.', 3000); this.reset();">
+        <div class="form-group">
+          <label for="name">Your Name</label>
+          <input type="text" id="name" required placeholder="Enter your full name">
+        </div>
+        <div class="form-group">
+          <label for="email">Your Email Address</label>
+          <input type="email" id="email" required placeholder="name@example.com">
+        </div>
+        <div class="form-group">
+          <label for="subject">Subject</label>
+          <input type="text" id="subject" required placeholder="Word suggestion, feedback, bug report, etc.">
+        </div>
+        <div class="form-group">
+          <label for="message">Message</label>
+          <textarea id="message" required placeholder="Write your message here..."></textarea>
+        </div>
+        <button type="submit" class="btn-primary" style="width: 100%;">Send Message 📩</button>
+      </form>
+    </div>
+  </article>
+
+  <!-- Toast Notification Container -->
+  <div id="toast-container"></div>
+
+  <!-- Master Footer -->
+  <footer>
+    <div class="footer-content">
+      <div class="footer-links">
+        <a href="index.html">Home</a>
+        <a href="privacy-policy.html">Privacy Policy</a>
+        <a href="contact.html">Contact Us</a>
+        <a href="sitemap.xml">Sitemap</a>
+      </div>
+      <p class="footer-text">
+        © 2026 Wordle Unlimited. Play infinite 5-letter 6-row word puzzles online for free.
+      </p>
+    </div>
+  </footer>
+
+  <script>
+    function showToast(msg, duration = 2000) {
+      const container = document.getElementById('toast-container');
+      const toast = document.createElement('div');
+      toast.className = 'toast';
+      toast.textContent = msg;
+      container.appendChild(toast);
+      setTimeout(() => {
+        toast.classList.add('fade-out');
+        setTimeout(() => toast.remove(), 400);
+      }, duration);
+    }
+  </script>
+</body>
+</html>
