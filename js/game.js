@@ -227,6 +227,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function renderGrid() {
     if (!gameGrid) return;
+    const existingTiles = gameGrid.querySelectorAll('.tile');
+    if (existingTiles.length === 30) {
+      existingTiles.forEach(t => {
+        t.textContent = '';
+        t.className = 'tile';
+      });
+      return;
+    }
     gameGrid.innerHTML = '';
     for (let r = 0; r < 6; r++) {
       const rowDiv = document.createElement('div');
@@ -246,6 +254,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function renderKeyboard() {
     if (!keyboardContainer) return;
+    const existingBtns = keyboardContainer.querySelectorAll('.key-btn');
+    if (existingBtns.length > 0) {
+      existingBtns.forEach(btn => {
+        const key = btn.dataset.key;
+        btn.className = 'key-btn';
+        if (key === 'ENTER' || key === 'DELETE') btn.classList.add('large-key');
+        btn.onclick = () => handleKeyPress(key);
+      });
+      return;
+    }
     const layout = [
       ["Q", "W", "E", "R", "T", "Y", "U", "I", "O", "P"],
       ["A", "S", "D", "F", "G", "H", "J", "K", "L"],
@@ -270,7 +288,7 @@ document.addEventListener('DOMContentLoaded', () => {
           btn.textContent = key;
         }
 
-        btn.addEventListener('click', () => handleKeyPress(key));
+        btn.onclick = () => handleKeyPress(key);
         rowDiv.appendChild(btn);
       });
       keyboardContainer.appendChild(rowDiv);
