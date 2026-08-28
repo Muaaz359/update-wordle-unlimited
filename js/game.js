@@ -193,7 +193,7 @@ state.customWord = null;
 const targetPool = DICTIONARY[5].target;
 state.targetWord = targetPool[Math.floor(Math.random() * targetPool.length)].toUpperCase();
 }
-console.log(`[Target Word]: ${state.targetWord}`);
+    // Target word set — no console logging in production
 renderGrid();
 renderKeyboard();
 }
