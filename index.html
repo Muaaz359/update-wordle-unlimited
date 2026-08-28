@@ -192,7 +192,10 @@
 
   <!-- 100% Above-The-Fold Centered Game Stage (Grid Boxes + Keyboard) -->
   <main class="game-wrapper">
-    <h1 class="sr-only">Wordle Unlimited - Play Free Infinite 5-Letter Word Puzzles Online</h1>
+    <div class="game-hero-header">
+      <h1 class="game-main-title">Wordle Unlimited</h1>
+      <p class="game-main-desc">Play infinite 5-letter word puzzles online with zero limits</p>
+    </div>
     <div id="game-grid">
       <div class="grid-row" data-row="0">
         <div class="tile" data-row="0" data-col="0"></div>
@@ -424,7 +427,7 @@
       <h2 style="text-align: center; margin-bottom: 10px;">Custom Challenge</h2>
       <p style="font-size: 0.88rem; color: var(--text-muted); margin-bottom: 16px; text-align: center;">Enter a 5-letter word to generate a challenge link for friends:</p>
       <input type="text" id="custom-word-input" maxlength="5" placeholder="ENTER WORD" aria-label="Enter 5-letter custom word" style="width: 100%; padding: 12px; font-size: 1.1rem; font-weight: 700; text-transform: uppercase; margin-bottom: 16px; border: 1px solid var(--card-border); border-radius: 8px; text-align: center; font-family: var(--font-main); letter-spacing: 0.15em;">
-      <button id="generate-link-btn" class="btn-primary" style="width: 100%;">Create & Copy Link</button>
+      <button id="generate-link-btn" class="btn-primary" style="width: 100%;" aria-label="Create and Copy Custom Challenge Link">Create & Copy Link</button>
     </div>
   </div>
 
