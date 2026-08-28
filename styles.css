@@ -22,7 +22,7 @@
   --bg-color: #f8fafc;
   --bg-subtle: #f1f5f9;
   --text-color: #0f172a;
-  --text-muted: #475569;
+  --text-muted: #334155;
   --text-light: #94a3b8;
   
   /* Crisp Square Wordle Tiles */
@@ -32,10 +32,10 @@
   --tile-text: #0f172a;
   
   /* Authentic Wordle Colors with WCAG AA High-Contrast Compliance */
-  --color-correct: #538d4e;
-  --color-correct-dark: #43723e;
-  --color-present: #a48c26;
-  --color-present-dark: #8c771f;
+  --color-correct: #2e7d32;
+  --color-correct-dark: #1b5e20;
+  --color-present: #856404;
+  --color-present-dark: #664d03;
   --color-absent: #64748b;
   --color-absent-dark: #475569;
   
@@ -74,7 +74,7 @@ html.dark-mode, body.dark-mode {
   --tile-border-active: #818384;
   --tile-text: #f8fafc;
   
-  --color-correct: #538d4e;
+  --color-correct: #2e7d32;
   --color-correct-dark: #467842;
   --color-present: #b59f3b;
   --color-present-dark: #96832e;
@@ -1582,4 +1582,28 @@ footer {
   .content-card-box h1 { font-size: 1.6rem; }
   .content-card-box h2 { font-size: 1.25rem; }
   .footer-main-grid { grid-template-columns: 1fr; }
+}
+
+.hero-brand-logo {
+  width: 52px;
+  height: 52px;
+  border-radius: 10px;
+  object-fit: cover;
+  display: block;
+  margin: 0 auto 6px auto;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+.footer-link-btn {
+  background: none;
+  border: none;
+  color: var(--footer-muted);
+  font-family: inherit;
+  font-size: inherit;
+  cursor: pointer;
+  padding: 0;
+  text-align: left;
+  transition: color 0.15s ease;
+}
+.footer-link-btn:hover {
+  color: var(--footer-link-hover);
 }
