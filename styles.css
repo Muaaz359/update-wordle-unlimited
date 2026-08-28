@@ -31,13 +31,13 @@
   --tile-border-active: #64748b;
   --tile-text: #0f172a;
   
-  /* Authentic Wordle Colors */
-  --color-correct: #6aaa64;
-  --color-correct-dark: #538d4e;
-  --color-present: #c9b458;
-  --color-present-dark: #b59f3b;
-  --color-absent: #787c7e;
-  --color-absent-dark: #565758;
+  /* Authentic Wordle Colors with WCAG AA High-Contrast Compliance */
+  --color-correct: #538d4e;
+  --color-correct-dark: #43723e;
+  --color-present: #a48c26;
+  --color-present-dark: #8c771f;
+  --color-absent: #64748b;
+  --color-absent-dark: #475569;
   
   /* Tactile Keyboard Keys */
   --key-bg: #d3d6da;
