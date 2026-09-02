@@ -113,6 +113,7 @@ const gameGrid = document.getElementById('game-grid');
 const keyboardContainer = document.getElementById('virtual-keyboard');
 const toastContainer = document.getElementById('toast-container');
 const nextGameBtn = document.getElementById('next-game-btn');
+const topNewGameBtn = document.getElementById('top-new-game-btn');
 const playAgainBtn = document.getElementById('play-again-btn');
 const statsModal = document.getElementById('stats-modal');
 const helpModal = document.getElementById('help-modal');
@@ -650,14 +651,14 @@ if (guess) {
 letter = guess.word[c] || '';
 const st = guess.states[c];
 if (st === 'correct') {
-bgColor = '#538d4e';
-strokeColor = '#538d4e';
+bgColor = '#6aaa64';
+strokeColor = '#6aaa64';
 } else if (st === 'present') {
-bgColor = '#b59f3b';
-strokeColor = '#b59f3b';
+bgColor = '#c9b458';
+strokeColor = '#c9b458';
 } else {
-bgColor = '#3a3a3c';
-strokeColor = '#3a3a3c';
+bgColor = '#787c7e';
+strokeColor = '#787c7e';
 }
 }
 ctx.fillStyle = bgColor;
@@ -704,6 +705,12 @@ if (e.altKey || e.ctrlKey || e.metaKey) return;
 handleKeyPress(e.key);
 });
 if (nextGameBtn) nextGameBtn.addEventListener('click', initGame);
+if (topNewGameBtn) {
+  topNewGameBtn.addEventListener('click', () => {
+    initGame();
+    showToast("New game started! Good luck.", 2000);
+  });
+}
 if (playAgainBtn) {
 playAgainBtn.addEventListener('click', () => {
 statsModal.classList.remove('active');
