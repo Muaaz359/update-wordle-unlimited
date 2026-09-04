@@ -1,4 +1,17 @@
-document.addEventListener('DOMContentLoaded', () => {
+// Immediate global exposure so inline handlers never fail
+window.startNewGame = function(e) {
+  if (typeof window._internalStartNewGame === 'function') {
+    window._internalStartNewGame(e);
+  } else if (typeof initWordleApp === 'function') {
+    initWordleApp();
+    if (typeof window._internalStartNewGame === 'function') {
+      window._internalStartNewGame(e);
+    }
+  }
+};
+window.initGame = window.startNewGame;
+
+function initWordleApp() {
 const state = {
 wordLength: 5,
 maxGuesses: 6,
@@ -21,12 +34,30 @@ distribution: { 1: 0, 2: 0, 3: 0, 4: 0, 5: 0, 6: 0 }
 },
 keyStates: {}
 };
+
+let activeGameTimeouts = [];
+function setGameTimeout(fn, delay) {
+  const id = setTimeout(() => {
+    activeGameTimeouts = activeGameTimeouts.filter(t => t !== id);
+    fn();
+  }, delay);
+  activeGameTimeouts.push(id);
+  return id;
+}
+function clearAllGameTimeouts() {
+  activeGameTimeouts.forEach(id => clearTimeout(id));
+  activeGameTimeouts = [];
+}
+
 const AudioEngine = {
 ctx: null,
 init() {
 if (!this.ctx && (window.AudioContext || window.webkitAudioContext)) {
 const AudioCtx = window.AudioContext || window.webkitAudioContext;
 this.ctx = new AudioCtx();
+}
+if (this.ctx && this.ctx.state === 'suspended') {
+this.ctx.resume().catch(() => {});
 }
 },
 playPop() {
@@ -129,85 +160,182 @@ const mins = Math.floor(seconds / 60);
 const secs = seconds % 60;
 return `${mins}m ${secs}s`;
 }
+let isStartingNewGame = false;
+function startNewGame(e) {
+  if (e) {
+    if (typeof e.preventDefault === 'function') e.preventDefault();
+    if (typeof e.stopPropagation === 'function') e.stopPropagation();
+  }
+  // Prevent double invocation from concurrent click & inline handler
+  if (isStartingNewGame) return;
+  isStartingNewGame = true;
+  setTimeout(() => { isStartingNewGame = false; }, 350);
+
+  // Clear all pending timers from previous games (flips, win bounce, modals)
+  clearAllGameTimeouts();
+
+  // Remove confetti canvas if present
+  const confettiCanvas = document.getElementById('confetti-canvas');
+  if (confettiCanvas) confettiCanvas.remove();
+
+  // Immediate tactile feedback: spin top new game button
+  const topBtn = document.getElementById('top-new-game-btn');
+  if (topBtn) {
+    topBtn.blur();
+    topBtn.classList.remove('is-spinning');
+    void topBtn.offsetWidth; // trigger reflow
+    topBtn.classList.add('is-spinning');
+    setTimeout(() => {
+      topBtn.classList.remove('is-spinning');
+    }, 650);
+  }
+  const nextBtn = document.getElementById('next-game-btn');
+  if (nextBtn) nextBtn.blur();
+  const playAgain = document.getElementById('play-again-btn');
+  if (playAgain) playAgain.blur();
+
+  // Dismiss any open modal overlays
+  if (statsModal) statsModal.classList.remove('active');
+  if (helpModal) helpModal.classList.remove('active');
+  if (settingsModal) settingsModal.classList.remove('active');
+  if (createModal) createModal.classList.remove('active');
+
+  // Clean custom word from URL so following games are fresh
+  if (window.location.search) {
+    try {
+      const cleanUrl = window.location.protocol + "//" + window.location.host + window.location.pathname;
+      window.history.replaceState({ path: cleanUrl }, '', cleanUrl);
+    } catch (err) {}
+  }
+  state.customWord = null;
+
+  // Run core game reset
+  initGame();
+
+  // Smooth scroll to top of game stage if scrolled
+  if (window.scrollY > 40) {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  // Audio and notification feedback
+  AudioEngine.playPop();
+  showToast("New game started! Good luck. 🎯", 2000);
+}
+
+window._internalStartNewGame = startNewGame;
+window.startNewGame = startNewGame;
+window.initGame = startNewGame;
+
 loadLocalStorage();
 checkURLCustomWord();
 initGame();
 setupEventListeners();
+
 function loadLocalStorage() {
-const savedStats = localStorage.getItem('wordle_unlimited_stats');
-if (savedStats) {
-try { state.stats = JSON.parse(savedStats); } catch (e) {}
+  try {
+    const savedStats = localStorage.getItem('wordle_unlimited_stats');
+    if (savedStats) {
+      try { state.stats = JSON.parse(savedStats); } catch (e) {}
+    }
+  } catch (e) {}
+
+  try {
+    const savedTheme = localStorage.getItem('wordle_unlimited_theme');
+    if (savedTheme !== null) {
+      state.darkTheme = savedTheme === 'dark';
+    } else {
+      state.darkTheme = false;
+    }
+    applyTheme();
+  } catch (e) {}
+
+  try {
+    const savedHard = localStorage.getItem('wordle_unlimited_hard_mode');
+    if (savedHard !== null) {
+      state.hardMode = savedHard === 'true';
+      const chk = document.getElementById('hard-mode-checkbox');
+      if (chk) chk.checked = state.hardMode;
+    }
+  } catch (e) {}
 }
-const savedTheme = localStorage.getItem('wordle_unlimited_theme');
-if (savedTheme !== null) {
-state.darkTheme = savedTheme === 'dark';
-} else {
-state.darkTheme = false;
-}
-applyTheme();
-const savedHard = localStorage.getItem('wordle_unlimited_hard_mode');
-if (savedHard !== null) {
-state.hardMode = savedHard === 'true';
-const chk = document.getElementById('hard-mode-checkbox');
-if (chk) chk.checked = state.hardMode;
-}
-}
+
 function saveLocalStorage() {
-localStorage.setItem('wordle_unlimited_stats', JSON.stringify(state.stats));
-localStorage.setItem('wordle_unlimited_theme', state.darkTheme ? 'dark' : 'light');
-localStorage.setItem('wordle_unlimited_hard_mode', state.hardMode);
+  try {
+    localStorage.setItem('wordle_unlimited_stats', JSON.stringify(state.stats));
+    localStorage.setItem('wordle_unlimited_theme', state.darkTheme ? 'dark' : 'light');
+    localStorage.setItem('wordle_unlimited_hard_mode', state.hardMode);
+  } catch (e) {}
 }
+
 function applyTheme() {
-if (state.darkTheme) {
-document.documentElement.classList.add('dark-mode');
-if (document.body) document.body.classList.add('dark-mode');
-} else {
-document.documentElement.classList.remove('dark-mode');
-if (document.body) document.body.classList.remove('dark-mode');
+  if (state.darkTheme) {
+    document.documentElement.classList.add('dark-mode');
+    if (document.body) document.body.classList.add('dark-mode');
+  } else {
+    document.documentElement.classList.remove('dark-mode');
+    if (document.body) document.body.classList.remove('dark-mode');
+  }
 }
-}
+
 function checkURLCustomWord() {
-const params = new URLSearchParams(window.location.search);
-const custom = params.get('w');
-if (custom) {
-try {
-const decoded = atob(custom).toUpperCase();
-if (decoded.length === 5) {
-state.customWord = decoded;
+  const params = new URLSearchParams(window.location.search);
+  const custom = params.get('w');
+  if (custom) {
+    try {
+      const decoded = atob(custom).toUpperCase();
+      if (decoded.length === 5) {
+        state.customWord = decoded;
+      }
+    } catch (e) {}
+  }
 }
-} catch (e) {}
-}
-}
+
 function initGame() {
-state.isGameOver = false;
-state.currentGuess = '';
-state.guesses = [];
-state.currentRow = 0;
-state.keyStates = {};
-state.startTime = Date.now();
-state.elapsedSeconds = 0;
-if (state.customWord) {
-state.targetWord = state.customWord;
-showToast("Custom challenge loaded! Good luck.", 2500);
-state.customWord = null;
-} else {
-const targetPool = DICTIONARY[5].target;
-state.targetWord = targetPool[Math.floor(Math.random() * targetPool.length)].toUpperCase();
+  state.isGameOver = false;
+  state.currentGuess = '';
+  state.guesses = [];
+  state.currentRow = 0;
+  state.keyStates = {};
+  state.startTime = Date.now();
+  state.elapsedSeconds = 0;
+
+  if (state.customWord) {
+    state.targetWord = state.customWord;
+    showToast("Custom challenge loaded! Good luck.", 2500);
+    state.customWord = null;
+  } else {
+    const targetPool = (typeof DICTIONARY !== 'undefined' && DICTIONARY[5] && DICTIONARY[5].target)
+      ? DICTIONARY[5].target
+      : (typeof OFFICIAL_WORDLE_5_LETTER !== 'undefined' ? OFFICIAL_WORDLE_5_LETTER : ["CRANE", "SLATE", "PLANT", "AUDIO", "REACT"]);
+    const oldWord = state.targetWord;
+    let newWord = targetPool[Math.floor(Math.random() * targetPool.length)].toUpperCase();
+    if (targetPool.length > 1 && newWord === oldWord) {
+      newWord = targetPool[Math.floor(Math.random() * targetPool.length)].toUpperCase();
+    }
+    state.targetWord = newWord;
+  }
+
+  renderGrid();
+  renderKeyboard();
 }
-    // Target word set — no console logging in production
-renderGrid();
-renderKeyboard();
-}
+
 function renderGrid() {
-if (!gameGrid) return;
-const existingTiles = gameGrid.querySelectorAll('.tile');
-if (existingTiles.length === 30) {
-existingTiles.forEach(t => {
-t.textContent = '';
-t.className = 'tile';
-});
-return;
-}
+  if (!gameGrid) return;
+  const rows = gameGrid.querySelectorAll('.grid-row');
+  rows.forEach(r => {
+    r.className = 'grid-row';
+  });
+
+  const existingTiles = gameGrid.querySelectorAll('.tile');
+  if (existingTiles.length === 30) {
+    existingTiles.forEach(t => {
+      t.textContent = '';
+      t.className = 'tile';
+      t.removeAttribute('data-letter');
+      t.style.animationDelay = '';
+    });
+    return;
+  }
 gameGrid.innerHTML = '';
 for (let r = 0; r < 6; r++) {
 const rowDiv = document.createElement('div');
@@ -386,15 +514,15 @@ function revealRow(rowIdx, states, callback) {
 if (!gameGrid) return;
 const rowTiles = gameGrid.querySelectorAll(`.grid-row[data-row="${rowIdx}"] .tile`);
 rowTiles.forEach((tile, colIdx) => {
-setTimeout(() => {
+setGameTimeout(() => {
 tile.classList.add('flip');
-setTimeout(() => {
+setGameTimeout(() => {
 tile.classList.add(states[colIdx]);
 AudioEngine.playTileReveal(states[colIdx]);
 }, 250);
 }, colIdx * 280);
 });
-setTimeout(() => {
+setGameTimeout(() => {
 if (callback) callback();
 }, 5 * 280 + 300);
 }
@@ -403,7 +531,7 @@ if (!gameGrid) return;
 const row = gameGrid.querySelector(`.grid-row[data-row="${rowIdx}"]`);
 if (row) {
 row.classList.add('shake');
-setTimeout(() => row.classList.remove('shake'), 500);
+setGameTimeout(() => row.classList.remove('shake'), 500);
 }
 }
 function handleWin() {
@@ -419,7 +547,7 @@ saveLocalStorage();
 if (gameGrid) {
 const winningTiles = gameGrid.querySelectorAll(`.grid-row[data-row="${state.currentRow}"] .tile`);
 winningTiles.forEach((tile, idx) => {
-setTimeout(() => {
+setGameTimeout(() => {
 tile.classList.add('win-bounce');
 }, idx * 100);
 });
@@ -430,7 +558,7 @@ const praises = ["Magnificent! 🎉", "Genius! 🌟", "Impressive! 🚀", "Splen
 const praise = praises[Math.min(state.currentRow, praises.length - 1)];
 const timeFormatted = formatTime(state.elapsedSeconds);
 showToast(`${praise} Solved in ${timeFormatted}! ⏱️`, 3800);
-setTimeout(() => showStatsModal(true), 2400);
+setGameTimeout(() => showStatsModal(true), 2400);
 }
 function handleLoss() {
 state.isGameOver = true;
@@ -440,7 +568,7 @@ state.stats.streak = 0;
 saveLocalStorage();
 const timeFormatted = formatTime(state.elapsedSeconds);
 showToast(`The word was: ${state.targetWord} (⏱️ ${timeFormatted})`, 4500);
-setTimeout(() => showStatsModal(false), 2800);
+setGameTimeout(() => showStatsModal(false), 2800);
 }
 function giveHint() {
 if (state.isGameOver) return;
@@ -470,9 +598,9 @@ const targetLetters = state.targetWord.split('');
 const rowTiles = gameGrid.querySelectorAll(`.grid-row[data-row="${state.currentRow}"] .tile`);
 rowTiles.forEach((tile, idx) => {
 tile.textContent = targetLetters[idx];
-setTimeout(() => {
+setGameTimeout(() => {
 tile.classList.add('flip');
-setTimeout(() => {
+setGameTimeout(() => {
 tile.classList.add('correct');
 }, 250);
 }, idx * 150);
@@ -480,11 +608,11 @@ tile.classList.add('correct');
 targetLetters.forEach(ch => {
 state.keyStates[ch] = 'correct';
 });
-setTimeout(updateKeyboardColors, 5 * 150 + 200);
+setGameTimeout(updateKeyboardColors, 5 * 150 + 200);
 }
 const timeFormatted = formatTime(state.elapsedSeconds);
 showToast(`🏳️ Surrendered in ${timeFormatted}! The word was: ${state.targetWord}`, 5000);
-setTimeout(() => {
+setGameTimeout(() => {
 showStatsModal(false);
 }, 2200);
 }
@@ -704,18 +832,12 @@ window.addEventListener('keydown', (e) => {
 if (e.altKey || e.ctrlKey || e.metaKey) return;
 handleKeyPress(e.key);
 });
-if (nextGameBtn) nextGameBtn.addEventListener('click', initGame);
+if (nextGameBtn) nextGameBtn.addEventListener('click', (e) => startNewGame(e));
 if (topNewGameBtn) {
-  topNewGameBtn.addEventListener('click', () => {
-    initGame();
-    showToast("New game started! Good luck.", 2000);
-  });
+  topNewGameBtn.addEventListener('click', (e) => startNewGame(e));
 }
 if (playAgainBtn) {
-playAgainBtn.addEventListener('click', () => {
-statsModal.classList.remove('active');
-initGame();
-});
+  playAgainBtn.addEventListener('click', (e) => startNewGame(e));
 }
 const hintBtn = document.getElementById('hint-btn');
 if (hintBtn) hintBtn.addEventListener('click', giveHint);
@@ -892,4 +1014,9 @@ carouselTrack.scrollBy({ left: 300, behavior: 'smooth' });
 });
 }
 }
-});
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initWordleApp);
+} else {
+  initWordleApp();
+}

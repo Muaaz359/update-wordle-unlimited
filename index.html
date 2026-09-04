@@ -34,7 +34,7 @@
   <meta name="twitter:image" content="https://wordle-unlimited.app/assets/wordle-game-preview.webp">
 
   <link rel="icon" type="image/png" href="assets/favicon.png">
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="styles.css?v=2">
   <script src="js/theme.js" defer></script>
 
   <!-- Structured Data JSON-LD -->
@@ -173,8 +173,8 @@
     </div>
 
     <div class="header-right">
-      <button id="top-new-game-btn" class="btn-new-game-top" title="Start a New Game" aria-label="Start New Game">
-        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67"/></svg>
+      <button id="top-new-game-btn" class="btn-new-game-top" type="button" onclick="window.startNewGame && window.startNewGame(event)" title="Start a New Game" aria-label="Start New Game">
+        <svg class="new-game-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67"/></svg>
         <span>New Game</span>
       </button>
       <a href="blog" class="nav-link">Strategy Guides</a>
@@ -280,7 +280,7 @@
     <div class="action-bar">
       <button id="hint-btn" class="btn-secondary" title="Get a letter hint" aria-label="Get Hint">💡 Hint</button>
       <button id="give-up-btn" class="btn-secondary" title="Give up and reveal the secret word" aria-label="Give Up">🏳️ Give Up</button>
-      <button id="next-game-btn" class="btn-primary" title="Start next puzzle" aria-label="Next Game">Next Game 🔄</button>
+      <button id="next-game-btn" class="btn-primary" type="button" onclick="window.startNewGame && window.startNewGame(event)" title="Start next puzzle" aria-label="Next Game">Next Game 🔄</button>
     </div>
   </main>
 
@@ -330,7 +330,7 @@
       <div id="dist-container"></div>
 
       <div style="display: flex; gap: 8px; margin-top: 10px;">
-        <button id="play-again-btn" class="btn-primary" style="flex: 1; justify-content: center; font-size: 0.88rem; padding: 7px 12px;" aria-label="Play Next Game">Play Next Game 🔄</button>
+        <button id="play-again-btn" class="btn-primary" type="button" onclick="window.startNewGame && window.startNewGame(event)" style="flex: 1; justify-content: center; font-size: 0.88rem; padding: 7px 12px;" aria-label="Play Next Game">Play Next Game 🔄</button>
       </div>
 
       <!-- Social & Picture Card Sharing Section -->
@@ -963,8 +963,8 @@
   </footer>
 
   <!-- Scripts -->
-  <script src="js/dictionary.js" defer></script>
-  <script src="js/game.js" defer></script>
+  <script src="js/dictionary.js?v=2" defer></script>
+  <script src="js/game.js?v=2" defer></script>
 
   <!-- Carousel Navigation Listener -->
   <script>

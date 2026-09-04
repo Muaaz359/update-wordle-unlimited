@@ -233,43 +233,111 @@ header {
   border-color: var(--header-border);
 }
 
+/* Top "New Game" Button - Sleek, Vibrant & Modern */
 .btn-new-game-top {
+  position: relative;
+  overflow: hidden;
   font-family: var(--font-main);
-  background-color: var(--color-correct);
+  background: linear-gradient(135deg, #22c55e 0%, #16a34a 55%, #15803d 100%);
   color: #ffffff;
-  border: none;
-  border-radius: 6px;
-  padding: 6px 12px;
-  font-size: 0.82rem;
+  border: 1px solid rgba(255, 255, 255, 0.24);
+  border-radius: 9999px;
+  padding: 7px 16px;
+  height: 35px;
+  font-size: 0.84rem;
   font-weight: 700;
+  letter-spacing: 0.015em;
   display: inline-flex;
   align-items: center;
-  gap: 6px;
+  justify-content: center;
+  gap: 7px;
   cursor: pointer;
   white-space: nowrap;
-  transition: all 0.15s ease;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
   user-select: none;
+  touch-action: manipulation;
+  box-shadow: 0 2px 10px rgba(22, 163, 74, 0.28), inset 0 1px 0.5px rgba(255, 255, 255, 0.35);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.22);
+  transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.2s ease, filter 0.2s ease, background 0.25s ease;
+}
+
+/* Subtle Shimmer Sheen on Hover */
+.btn-new-game-top::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -80%;
+  width: 50%;
+  height: 200%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.24), transparent);
+  transform: rotate(25deg);
+  pointer-events: none;
+  transition: none;
+}
+
+.btn-new-game-top:hover::after {
+  left: 140%;
+  transition: left 0.65s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .btn-new-game-top:hover {
-  background-color: var(--color-correct-dark);
-  transform: translateY(-1px);
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.18);
+  background: linear-gradient(135deg, #2ecc71 0%, #16a34a 50%, #14532d 100%);
+  transform: translateY(-1.5px);
+  filter: brightness(1.04);
+  box-shadow: 0 4px 16px rgba(34, 197, 94, 0.45), inset 0 1px 1px rgba(255, 255, 255, 0.45);
 }
 
 .btn-new-game-top:active {
-  transform: translateY(0);
+  transform: translateY(1px) scale(0.97);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.25), inset 0 1px 2px rgba(0, 0, 0, 0.2);
+  filter: brightness(0.98);
 }
 
-.btn-new-game-top svg {
-  width: 14px;
-  height: 14px;
-  transition: transform 0.3s ease;
+.btn-new-game-top:focus-visible {
+  outline: 2px solid #22c55e;
+  outline-offset: 2px;
 }
 
-.btn-new-game-top:hover svg {
-  transform: rotate(90deg);
+.btn-new-game-top svg,
+.btn-new-game-top .new-game-icon,
+.btn-new-game-top span {
+  pointer-events: none;
+}
+
+.btn-new-game-top svg,
+.btn-new-game-top .new-game-icon {
+  width: 15px;
+  height: 15px;
+  flex-shrink: 0;
+  transition: transform 0.45s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.btn-new-game-top:hover svg,
+.btn-new-game-top:hover .new-game-icon {
+  transform: rotate(180deg);
+}
+
+@keyframes spin-refresh {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.btn-new-game-top.is-spinning svg,
+.btn-new-game-top.is-spinning .new-game-icon {
+  animation: spin-refresh 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Dark mode styling for top button */
+html.dark-mode .btn-new-game-top,
+body.dark-mode .btn-new-game-top {
+  background: linear-gradient(135deg, #22c55e 0%, #15803d 100%);
+  box-shadow: 0 2px 12px rgba(34, 197, 94, 0.35), inset 0 1px 0.5px rgba(255, 255, 255, 0.28);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+html.dark-mode .btn-new-game-top:hover,
+body.dark-mode .btn-new-game-top:hover {
+  background: linear-gradient(135deg, #4ade80 0%, #16a34a 100%);
+  box-shadow: 0 4px 18px rgba(34, 197, 94, 0.52), inset 0 1px 1px rgba(255, 255, 255, 0.4);
 }
 
 /* Game Wrapper & Board */
@@ -1704,9 +1772,10 @@ footer {
     height: 32px;
   }
   .btn-new-game-top {
-    padding: 5px 9px;
-    font-size: 0.78rem;
-    gap: 4px;
+    padding: 6px 12px;
+    font-size: 0.8rem;
+    height: 33px;
+    gap: 5px;
   }
   .game-wrapper {
     padding: 8px 6px 14px 6px;
@@ -1799,10 +1868,11 @@ footer {
     display: none;
   }
   .btn-new-game-top {
-    padding: 7px;
-    border-radius: 6px;
-    min-width: 32px;
-    height: 32px;
+    padding: 0;
+    width: 34px;
+    min-width: 34px;
+    height: 34px;
+    border-radius: 50%;
     justify-content: center;
   }
 }
