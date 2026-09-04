@@ -1014,6 +1014,7 @@ carouselTrack.scrollBy({ left: 300, behavior: 'smooth' });
 });
 }
 }
+}
 
 if (document.readyState === 'loading') {
   document.addEventListener('DOMContentLoaded', initWordleApp);
