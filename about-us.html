@@ -66,7 +66,7 @@
   <header>
     <div class="header-left">
       <a href="./" class="logo-text">
-        <img src="assets/wordle-logo.webp" alt="Wordle Unlimited 3D Green Tile Logo WebP" class="header-logo-img" width="32" height="32">
+        <img src="assets/wordle-logo.webp" alt="Wordle Unlimited Logo" class="header-logo-img" width="32" height="32">
         <span>Wordle</span> Unlimited
       </a>
     </div>
@@ -127,6 +127,60 @@
           <p>Smooth on mobile, tablet, and desktop with support for dark mode and physical keyboards.</p>
         </div>
       </div>
+    </section>
+
+    <!-- Platform Architecture & Technical Specifications -->
+    <section class="content-card-box">
+      <h2>Platform Architecture & Technical Specifications</h2>
+      <p>
+        Wordle Unlimited was engineered from the ground up to deliver an instant, zero-latency word puzzle experience directly in the browser. Unlike heavy web apps that rely on third-party frameworks or constant server round-trips, the entire game engine, vocabulary database, and feedback logic execute 100% client-side in pure Vanilla ECMAScript.
+      </p>
+
+      <div class="webp-box" style="margin: 20px 0;">
+        <img src="assets/wordle-specifications-architecture.webp" alt="Wordle Unlimited platform technical architecture and specifications diagram" width="1000" height="560" loading="lazy" decoding="async">
+      </div>
+
+      <table class="styled-table" style="margin-top: 16px;">
+        <thead>
+          <tr>
+            <th>Specification Component</th>
+            <th>Technology & Standard</th>
+            <th>Engineering Benefit</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Core Game Engine</strong></td>
+            <td>Pure Vanilla ECMAScript 6+</td>
+            <td>Zero framework overhead, instant DOM updates, and 0ms input latency.</td>
+          </tr>
+          <tr>
+            <td><strong>Audio Synthesizer</strong></td>
+            <td>Web Audio API Oscillator Engine</td>
+            <td>Synthesizes key clicks and win chords in real time with 0 KB audio downloads.</td>
+          </tr>
+          <tr>
+            <td><strong>Deduction Algorithm</strong></td>
+            <td>Two-Pass Linear O(N) Evaluation</td>
+            <td>First pass locks green positions; second pass tallies remaining yellow counts to eliminate duplicate false flags.</td>
+          </tr>
+          <tr>
+            <td><strong>Scorecard Rendering</strong></td>
+            <td>HTML5 2D Canvas API</td>
+            <td>Generates dynamic high-definition 640x740 scorecards client-side for one-click downloading and social sharing.</td>
+          </tr>
+          <tr>
+            <td><strong>Data Persistence</strong></td>
+            <td>Browser Local Storage (W3C Standard)</td>
+            <td>All win streaks, histograms, and preferences stay private in your browser sandbox with zero tracking cookies.</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3>Privacy, Local Storage & Offline Capability</h3>
+      <p>
+        We believe everyday browser games should respect privacy. Wordle Unlimited requires no account registration, stores zero tracking cookies, and runs offline or on firewalled school Chromebooks without any external server dependencies.
+      </p>
     </section>
 
     <section class="content-card-box">

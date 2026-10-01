@@ -98,26 +98,26 @@
         "mainEntity": [
           {
             "@type": "Question",
-            "name": "What technology stack powers Wordle Unlimited?",
+            "name": "Is Wordle Unlimited completely free to play without limits?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Wordle Unlimited is built using pure Vanilla ES6+ JavaScript, semantic HTML5, CSS3 Custom Properties, the Web Audio API for synthetic tactile sounds, and the HTML5 2D Canvas API for instant image scorecard rendering without any external framework bloat."
+              "text": "Yes. Wordle Unlimited is 100% free with no daily limits, zero paywalls, and no mandatory app downloads. You can play as many consecutive puzzles as you want."
             }
           },
           {
             "@type": "Question",
-            "name": "How does Wordle Unlimited evaluate letter guesses?",
+            "name": "Can I play Wordle Unlimited offline or on school networks?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "It uses a precise two-pass linear O(N) letter matching algorithm. The first pass identifies exact positional green matches; the second pass identifies present yellow letters based on remaining letter frequencies to eliminate ghost duplicate warnings."
+              "text": "Yes. Because the entire game engine and vocabulary library execute client-side in pure JavaScript, it works smoothly on school Chromebooks, workplace firewalls, and low-bandwidth connections."
             }
           },
           {
             "@type": "Question",
-            "name": "How does the custom word challenge link work?",
+            "name": "How is the HD Picture Scorecard generated?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Custom challenge words are Base64 encoded and attached to the URL query string as a '?w=' parameter, allowing friends to solve your secret word without needing any database queries or user accounts."
+              "text": "The scorecard is drawn client-side using an HTML5 2D Canvas element. It dynamically maps your actual green, yellow, and gray guess colors onto a modern dark gradient card that can be downloaded as a PNG or shared to Instagram and WhatsApp."
             }
           }
         ]
@@ -179,6 +179,11 @@
           <span>⏱️ 5 min read</span>
           <span>⚡ High-Performance Tech Spec</span>
         </div>
+      </div>
+
+      <!-- Architecture Graphic -->
+      <div style="margin: 20px 0 26px 0; text-align: center;">
+        <img src="../assets/wordle-specifications-architecture.webp" alt="Wordle Unlimited platform technical architecture and specifications diagram" width="1200" height="675" style="width: 100%; max-width: 820px; height: auto; border-radius: 10px; border: 1px solid var(--card-border); display: block; margin: 0 auto;" loading="lazy" decoding="async">
       </div>
 
       <p class="lead-text" style="font-size: 1.05rem; line-height: 1.7; margin-bottom: 18px; color: var(--text-color);">
@@ -350,6 +355,45 @@
           </div>
         </details>
       </div>
+
+      <!-- Related Strategy Guides Section -->
+      <section style="margin-top: 36px; padding-top: 24px; border-top: 1px solid var(--card-border);">
+        <h2 style="font-size: 1.35rem; margin-bottom: 16px;">Related Strategy Guides & Resources</h2>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px;">
+          <a href="how-to-play-wordle-unlimited" class="blog-card" style="text-decoration: none; color: inherit; border: 1px solid var(--card-border); border-radius: 8px; overflow: hidden; display: flex; flex-direction: column;">
+            <img src="../assets/how-to-play-wordle-guide.webp" alt="Hand tapping a Wordle tile with step 1 2 3 tutorial guide for how to play Wordle Unlimited" style="width: 100%; aspect-ratio: 16/9; object-fit: cover;" width="640" height="360" loading="lazy" decoding="async">
+            <div style="padding: 12px; flex: 1; display: flex; flex-direction: column;">
+              <h3 style="font-size: 1rem; margin: 0 0 6px 0; color: var(--text-color);">How to Play Wordle Unlimited</h3>
+              <p style="font-size: 0.85rem; color: var(--text-muted); margin: 0 0 8px 0; line-height: 1.4;">Official rules, tile color meanings, and tips to start guessing efficiently.</p>
+              <span style="font-size: 0.82rem; color: var(--primary-color); font-weight: 600; margin-top: auto;">Read Guide →</span>
+            </div>
+          </a>
+          <a href="best-wordle-starting-words" class="blog-card" style="text-decoration: none; color: inherit; border: 1px solid var(--card-border); border-radius: 8px; overflow: hidden; display: flex; flex-direction: column;">
+            <img src="../assets/best-wordle-starters.webp" alt="Wordle grid with glowing green and yellow tiles and golden victory trophy for best Wordle starting words guide" style="width: 100%; aspect-ratio: 16/9; object-fit: cover;" width="640" height="360" loading="lazy" decoding="async">
+            <div style="padding: 12px; flex: 1; display: flex; flex-direction: column;">
+              <h3 style="font-size: 1rem; margin: 0 0 6px 0; color: var(--text-color);">Best Wordle Starting Words</h3>
+              <p style="font-size: 0.85rem; color: var(--text-muted); margin: 0 0 8px 0; line-height: 1.4;">Entropy analysis and mathematical comparisons of top opening words.</p>
+              <span style="font-size: 0.82rem; color: var(--primary-color); font-weight: 600; margin-top: auto;">Read Guide →</span>
+            </div>
+          </a>
+          <a href="wordle-hard-mode-guide" class="blog-card" style="text-decoration: none; color: inherit; border: 1px solid var(--card-border); border-radius: 8px; overflow: hidden; display: flex; flex-direction: column;">
+            <img src="../assets/wordle-hard-mode-tactics.webp" alt="Technical blueprint with mechanical gears and circuit tiles for Wordle Hard Mode tactics guide" style="width: 100%; aspect-ratio: 16/9; object-fit: cover;" width="640" height="360" loading="lazy" decoding="async">
+            <div style="padding: 12px; flex: 1; display: flex; flex-direction: column;">
+              <h3 style="font-size: 1rem; margin: 0 0 6px 0; color: var(--text-color);">Mastering Wordle Hard Mode</h3>
+              <p style="font-size: 0.85rem; color: var(--text-muted); margin: 0 0 8px 0; line-height: 1.4;">Strict green and yellow clue tactics to avoid dangerous rhyming traps.</p>
+              <span style="font-size: 0.82rem; color: var(--primary-color); font-weight: 600; margin-top: auto;">Read Guide →</span>
+            </div>
+          </a>
+          <a href="wordle-cheat-sheet" class="blog-card" style="text-decoration: none; color: inherit; border: 1px solid var(--card-border); border-radius: 8px; overflow: hidden; display: flex; flex-direction: column;">
+            <img src="../assets/wordle-letter-frequency-matrix.webp" alt="Wordle puzzle grid beside a frequency bar chart and magnifying glass for Wordle cheat sheet guide" style="width: 100%; aspect-ratio: 16/9; object-fit: cover;" width="640" height="360" loading="lazy" decoding="async">
+            <div style="padding: 12px; flex: 1; display: flex; flex-direction: column;">
+              <h3 style="font-size: 1rem; margin: 0 0 6px 0; color: var(--text-color);">Wordle Cheat Sheet & Matrix</h3>
+              <p style="font-size: 0.85rem; color: var(--text-muted); margin: 0 0 8px 0; line-height: 1.4;">Positional frequencies, diphthong patterns, and trap avoidance tables.</p>
+              <span style="font-size: 0.82rem; color: var(--primary-color); font-weight: 600; margin-top: auto;">Read Guide →</span>
+            </div>
+          </a>
+        </div>
+      </section>
 
       <!-- Call to Action Banner -->
       <div style="background: var(--bg-subtle); border: 1px solid var(--card-border); border-radius: 8px; padding: 22px; margin-top: 28px; text-align: center;">
